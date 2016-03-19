@@ -1,0 +1,7 @@
+
+<%= simple_form_for @user do |f| %>
+    <%= f.input :email, placeholder: 'users@domain.com', required: true %>
+    <%= f.input :name, placeholder: 'users' %>
+    <%= f.input :password, placeholder: 'password' %>
+    <%= f.button :submit, 'Signup' %>
+<% end %>

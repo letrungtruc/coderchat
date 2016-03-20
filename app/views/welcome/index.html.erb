@@ -1,7 +1,3 @@
+<h1>WELCOME to SIMPLECARRY</h1>
 
-<%= simple_form_for @user do |f| %>
-    <%= f.input :email, placeholder: 'users@domain.com', required: true %>
-    <%= f.input :name, placeholder: 'users' %>
-    <%= f.input :password, placeholder: 'password' %>
-    <%= f.button :submit, 'Signup' %>
-<% end %>
+<%= link_to 'Register', new_user_path %>

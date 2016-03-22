@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
+
   resources :users
+  resources :sessions
+  resources :messages
+  get 'friend_request/:id' => 'users#friend_request', as: :friend_request
+
+  delete 'logout' => 'sessions#destroy'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

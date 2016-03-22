@@ -1,0 +1,67 @@
+<div class="container">
+  <h2 class="title"><%= "#{@type.capitalize} Messages" %></h2>
+
+  <table class="table">
+    <thead class="thead-default">
+    <tr>
+      <th>#</th>
+      <% if @type == 'incomming' %>
+          <th>From</th>
+      <% end %>
+      <% if @type == 'outcomming' %>
+          <th>To</th>
+      <% end %>
+      <th>Sent date</th>
+      <% if @type == 'incomming' %>
+          <th>Action</th>
+      <% end %>
+      <% if @type == 'outcomming' %>
+          <th>Status</th>
+      <% end %>
+    </tr>
+    </thead>
+    <tbody>
+    <div class="collapse navbar-toggleable-xs" id="nav-content">
+      <ul class="nav navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="<%= new_message_path %>">New message</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<%= users_path %>">Add friends</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<%= messages_path.concat('?type=outcomming') %>">Sent messages</a>
+        </li>
+      </ul>
+    </div>
+
+    <% @messages.each_with_index do |message, index| %>
+        <tr class="<%= "unread" unless message.read %>">
+          <td><%= index + 1 %></td>
+          <% if @type == 'incomming' %>
+              <td><%= message.sender.name %></td>
+          <% end %>
+          <% if @type == 'outcomming' %>
+              <td><%= message.reciever.name %> </td>
+          <% end %>
+          <td><%= message.created_at.strftime("%b %d, %Y") %></td>
+          <% if @type == 'incomming' %>
+              <% if message.read %>
+                  <td>Read</td>
+              <% else %>
+                  <td><%= link_to "Read", message %></td>
+              <% end %>
+          <% end %>
+          <% if @type == 'outcomming' %>
+              <% if message.read %>
+                  <td><%= "Read on #{message.updated_at.strftime("%b %d, %Y")}" %></td>
+              <% else %>
+                  <td>Unread</td>
+              <% end %>
+          <% end %>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+</div>
